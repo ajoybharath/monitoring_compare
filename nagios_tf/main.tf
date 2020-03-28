@@ -7,23 +7,6 @@ provider "aws" {
   version = "~> 2.0"
 }
 
-#resource "aws_elb" "web" {
-#  name = "terraform-example-elb"
-
-  # The same availability zone as our instances
-#  availability_zones = aws_instance.web.*.availability_zone
-
-#  listener {
-#    instance_port     = 80
-#    instance_protocol = "http"
-#    lb_port           = 80
-#    lb_protocol       = "http"
-#  }
-
-  # The instances are registered automatically
-#  instances = aws_instance.web.*.id
-#}
-
 resource "aws_instance" "nagios" {
   instance_type = "t2.micro"
   ami           = var.aws_amis[var.aws_region]
@@ -32,7 +15,8 @@ resource "aws_instance" "nagios" {
   security_groups = [
     aws_security_group.allow_ssh.name,
     aws_security_group.allow_outbound.name,
-    aws_security_group.allow_http.name 
+    aws_security_group.allow_http.name,
+    aws_security_group.allow_nrpe.name
   ]
 
   provisioner "remote-exec" {

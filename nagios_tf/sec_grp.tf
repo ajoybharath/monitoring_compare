@@ -22,6 +22,18 @@ resource "aws_security_group" "allow_http" {
   }
 }
 
+resource "aws_security_group" "allow_nrpe" {
+  name        = "allow-nrpe"
+  description = "Allow NRPE inbound traffic"
+
+  ingress {
+    from_port   = 5666
+    to_port     = 5666
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_security_group" "allow_outbound" {
   name        = "allow-all-outbound"
   description = "Allow all outbound traffic"
