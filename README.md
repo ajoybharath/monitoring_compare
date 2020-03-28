@@ -1,4 +1,4 @@
-# COmparing Nagios & Prometheus #
+# Comparing Nagios & Prometheus #
 
 ### Pre requisites ###
 
