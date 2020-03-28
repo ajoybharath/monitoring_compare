@@ -1,0 +1,38 @@
+---
+    - name: Setting Docker and git 
+      hosts: all
+      gather_facts: true
+      become: true
+      become_method: sudo
+      become_user: root
+      tasks:
+      - name: Install docker
+        yum:
+          name: "{{ packages }}"
+          state: installed
+        var:
+          packages:
+            - docker
+            - git
+            - python-pip 
+
+      - name: ec2-user to docker group
+        user:
+          name: ec2-user
+          groups: docker
+          append: yes
+
+      - name: Starting Docker
+        service:
+          name=docker
+          state=started
+          enabled=yes
+   
+      - name: Install docker-py
+        pip: name=docker-py
+    
+      - name: Ensure docker-compose is installed and available
+        get_url: 
+          url : https://github.com/docker/compose/releases/download/1.7.0-rc1/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}
+          dest: /usr/bin/docker-compose
+          mode: 'u+x,g+x'
