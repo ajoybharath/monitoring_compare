@@ -1,5 +1,5 @@
 
-### NOTE: TO able to execute the contents on the branches you need the following ### 
+### NOTE: TO able to execute the contents on the prom_tf and nagios_tf folders you need the following ### 
 *You can use the link provided below for using the terraform and ansible*
 
 - You also need to enable WSL to run ansible the steps are mentioned here: https://ajoybharath.in/linux-inside-windows-10/

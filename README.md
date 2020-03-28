@@ -13,7 +13,7 @@
 
 #### This repo have the following branches ####
 
-- master - Will be having the notes and HOWTO on the setup
-- terraform_codes - This branch has terrraform codes to standup instance(s) in ec2.  
+- master - Will be having the Info and HOWTO on the setup
+- terraform_codes - This branch has terrraform codes to standup instance(s) in ec2 for Nagios and Prometheus  
 - monitoring_tools - This branch will have codes and configs to install Nagios & Prometheus.
 
