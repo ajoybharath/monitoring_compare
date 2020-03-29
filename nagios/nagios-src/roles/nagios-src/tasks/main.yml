@@ -167,6 +167,12 @@
 - name: Make Install Plugins
   shell: cd {{ ansible_env.HOME }}/nagios/{{ pluginssrc }} && make install creates=/usr/local/nagios/libexec/check_ping
 
+- name: Make SNMP Plugins
+  shell: cd {{ ansible_env.HOME }}/nagios/{{ pluginssrc }} && make creates={{ ansible_env['HOME'] }}/nagios/{{ pluginssrc }}/plugins/check_snmp
+
+- name: Make Install SNMP Plugins
+  shell: cd {{ ansible_env.HOME }}/nagios/{{ pluginssrc }} && make install creates=/usr/local/nagios/libexec/check_snmp
+
 - name: Unpack NRPE source files
   shell: cd {{ ansible_env.HOME }}/nagios && tar -xzvf {{ nrpesrc }}.tar.gz creates={{ ansible_env['HOME'] }}/nagios/{{ nrpesrc }}
 
