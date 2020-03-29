@@ -24,9 +24,9 @@
   apt: pkg={{ item }} state=present update_cache=yes
   with_items:
    - apache2
-   - php5-gd
-   - libgd2-xpm-dev
-   - libapache2-mod-php5
+   - php
+   - libapache2-mod-php
+#   - libgd2-xpm-dev
   when: is_ubuntu
 
 - name: Activate Apache cgi  on Ubuntu 14.04

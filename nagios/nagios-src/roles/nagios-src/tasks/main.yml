@@ -77,7 +77,7 @@
    - fping
    - libldap2-dev
    - libpq-dev
-   - libradiusclient-ng-dev
+  # - libradiusclient-ng-dev
    - smbclient
    - gawk
   when: is_ubuntu
@@ -144,7 +144,7 @@
   shell: cd {{ ansible_env.HOME }}/nagios/{{ nagiossrc }} && make install-webconf creates=/etc/apache2/conf-available/nagios.conf
   when: is_ubuntu
 
-- name: Activate Nagios site on Ubuntu 14.04
+- name: Activate Nagios site on Ubuntu 
   file: src=/etc/apache2/conf-available/nagios.conf dest=/etc/apache2/conf-enabled/nagios.conf state=link owner=root group=root
   notify: restart apache
   when: is_ubuntu
@@ -180,7 +180,10 @@
   shell: cp {{ ansible_env['HOME'] }}/nagios/{{ nrpesrc }}/src/check_nrpe /usr/local/nagios/libexec/check_nrpe creates=/usr/local/nagios/libexec/check_nrpe
 
 - name: Ensure Nagios is started
-  service: name=nagios state=started enabled=yes
+  service:
+    name: nagios
+    state: started
+  when: is_ubuntu
 
 - name: Fix Nagios startup on Debian
   shell: cd /etc/rc2.d && ln -s ../init.d/nagios S18nagios creates=/etc/rc2.d/S18nagios
